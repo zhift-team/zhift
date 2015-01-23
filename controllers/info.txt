@@ -1,0 +1,8 @@
+Files that are the controllers for the databases.
+
+These functions directly query and/or manipulate the database.
+Examples:
+
+    - find
+    - remove
+    - create

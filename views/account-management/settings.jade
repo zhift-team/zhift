@@ -1,0 +1,25 @@
+extends ../layout
+
+block head
+  include ../navbar
+  link(rel="stylesheet", href="stylesheets/user-settings.css")
+  script(type="text/javascript", src="/javascripts/controllers/user-controller.js")
+  script(type="text/javascript", src="/javascripts/services/user-service.js")
+  script(type="text/javascript", src="/javascripts/services/schedule-service.js")
+
+block navbar
+  +logged-in-navbar(user.schedule === undefined)
+
+block content
+  div(id="user-settings" ng-controller="UserController", ng-init="init('#{user._id}', '#{user.schedule}')")
+    h1 User Settings
+    h3 Check your details below:
+    ul
+      li Name: #{user.name}
+      li Email: #{user.email}
+      li Organization: #{user.org}
+      if user.schedule
+        li Role: {{role}}
+    h3 Change your password:
+    input(type="password", placeholder="New Password", ng-model="password")
+    input(type="submit", value="Save", ng-click="changePassword(password)")

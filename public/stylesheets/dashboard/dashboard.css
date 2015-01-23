@@ -1,0 +1,35 @@
+.dashboard {
+    /*max-width: 900px;*/
+    max-width: 600px;
+    min-width: 400px;
+
+}
+
+.schedule {
+    /*border: 1px solid black;  */
+}
+
+.schedule .role {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16pt;
+    text-align: center;
+
+}
+
+.empty-record {
+    text-align: center;
+}
+
+.schedule .record {
+    /*background-color: rgb(42, 43, 48);*/
+    /*color: rgb(245, 245, 245);*/
+    margin: 5px 0;
+    padding: 10px;
+    border: 3px solid #ffc40f;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.schedule .record:hover {
+    background-color: rgb(255, 255, 245);
+}

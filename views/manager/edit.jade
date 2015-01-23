@@ -1,0 +1,55 @@
+//- Edit Organization: view and add roles
+//- author: @Lily Seropian, Vicky Gong
+
+extends ../layout
+
+block head
+  link(rel="stylesheet", href="/stylesheets/edit-org.css")
+  script(type="text/javascript", src="/javascripts/controllers/manager-edit-controller.js")
+  script(type="text/javascript", src="/javascripts/services/schedule-service.js")
+  script(type="text/javascript", src="/javascripts/services/user-service.js")
+  include ../navbar
+
+block navbar
+  +logged-in-navbar(true)
+
+block content
+  div(ng-controller="ManagerEditController", ng-init="init('#{user.org}')", class="center")
+    div.btn-group
+      button(type="button", class="btn btn-default", ng-click="tab='Managers'") Managers
+        span.glyphicon.glyphicon-pencil(class="edit-user", ng-click="showAddManager = !showAddManager")
+      button(type="button", class="btn btn-default", ng-click="tab='Employees'") Employees
+        span.glyphicon.glyphicon-pencil(class="edit-user", ng-click="showAddEmployee = !showAddEmployee")
+    div(ng-show="tab==='Managers'")
+      div.add-tab(ng-show="showAddManager")
+        input(type="text", placeholder="Name", ng-model="name")
+        input(type="text", placeholder="Email", ng-model="email")
+        input.btn.btn-default(type="submit", value="Submit", ng-click="showAddManager = false; createManager(name, email, invite)")
+      table.center.edit-table
+        thead
+          tr
+            td Name
+            td Email
+        tbody
+          tr(ng-repeat="manager in managers")
+            td {{manager.name}}
+            td {{manager.email}}
+
+    div(ng-show="tab==='Employees'")
+      div.add-tab(ng-show="showAddEmployee")
+        input(type="text", placeholder="Name", ng-model="name")
+        input(type="text", placeholder="Email", ng-model="email")
+        select.form-control.select-form(name="role", ng-model="role")
+          option(ng-repeat="(scheduleId, roleName) in schedules", ng-value="roleName") {{roleName}}
+        input.btn.btn-default(type="submit", value="Submit", ng-click="showAddEmployee = false; createEmployee(role)")
+      table.center.edit-table
+        thead
+          tr
+            td Name
+            td Email
+            td Position
+        tbody
+          tr(ng-repeat="employee in employees")
+            td {{employee.name}}
+            td {{employee.email}}
+            td {{schedules[employee.schedule]}}

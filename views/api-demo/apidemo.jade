@@ -1,0 +1,178 @@
+//- API Testing Page
+//- @author Vicky Gong, Lily Seropian, Dylan Joss
+
+extends ../layout
+
+block head
+  link(rel="stylesheet", href="stylesheets/demo.css")
+  script(type="text/javascript", src="javascripts/demo-controller.js")
+  
+block content
+  script.
+    var demoController = new DemoController();
+    $(document).ready(function() {
+      demoController.init();
+    });
+
+  div.collectionDiv 
+    h1.collectionTitle Organizations
+    ul
+      li Create
+        legend
+          form#createOrgForm(name="createOrgForm")
+            input(name="name", placeholder="Org Name", required) 
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#createOrgResponse
+      li Get
+        legend
+          form#getOrgForm(name="getOrgForm")
+            input(name="id", placeholder="Org Name", required)
+            br
+            input(type="submit") 
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#getOrgResponse
+  div.collectionDiv 
+    h1.collectionTitle Schedule
+    ul
+      li Create
+        legend
+          form#createScheduleForm(name="createScheduleForm")
+            input(name="orgName", placeholder="Org Name", required) 
+            br
+            input(name="role", placeholder="Role Name", required) 
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#createScheduleResponse
+      li Get
+        legend
+          form#getScheduleForm(name="getScheduleForm")
+            input(name="id", placeholder="Schedule ID", required)
+            br
+            input(type="submit") 
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#getScheduleResponse
+  div.collectionDiv 
+    h1.collectionTitle User
+    ul
+      li Create
+        legend
+          form#createUserForm(name="createUserForm")
+            input(name="org", placeholder="Organization", required) 
+            br
+            input(name="username", placeholder="Username", required) 
+            br
+            input(name="password", placeholder="Password", required) 
+            br
+            input(name="role", placeholder="Role", required) 
+            br
+            input(type="radio" name="type" value="employee" checked) 
+            | Employee
+            input(type="radio" name="type" value="manager") 
+            | Manager
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#createUserResponse
+      li Get
+        legend
+          form#getUserForm(name="getUserForm")
+            input(name="organization", placeholder="Organization", required) 
+            br
+            input(name="id", placeholder="User ID", required) 
+            br
+            input(name="userType", placeholder="User Type", required) 
+            br  
+            input(type="submit") 
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#getUserResponse
+  div.collectionDiv
+    h1.collectionTitle Template Shift
+    ul
+      li Create
+        legend
+          form#createTemplateShiftForm(name="createTemplateShiftForm")
+            input(name="day", placeholder="Day", required)
+            br
+            input(name="startTime", placeholder="Start Time", required) 
+            br
+            input(name="endTime", placeholder="End Time", required) 
+            br
+            input(name="employeeId", placeholder="Employee ID", required) 
+            br
+            input(name="scheduleId", placeholder="Schedule ID", required) 
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#createTemplateShiftResponse
+      li Get
+        legend
+          form#getTemplateShiftForm(name="getTemplateShiftForm")
+            input(name="id", placeholder="Template Shift ID", required) 
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#getTemplateShiftResponse
+      li Delete
+        legend
+          form#deleteTemplateShiftForm(name="deleteTemplateShiftForm")
+            input(name="id", placeholder="Template Shift ID", required) 
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#deleteTemplateShiftResponse
+  div.collectionDiv 
+    h1.collectionTitle Shift
+    ul
+      li Create Shift
+        legend
+          form#createShiftForm(name="createShiftForm")
+            input(name="day", placeholder="day", required) 
+            br
+            input(name="startTime", placeholder="Start Time", required) 
+            br
+            input(name="endTime", placeholder="End Time", required) 
+            br
+            input(name="employeeId", placeholder="Employee ID", required) 
+            br
+            input(name="scheduleId", placeholder="Schedule ID", required) 
+            br
+            input(name="templateShiftId", placeholder="Template Shift ID", required) 
+            br
+            input(name="date", placeholder="date", required) 
+            br
+            input(type="submit")
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#createShiftResponse
+      li Get
+        legend
+          form#getShiftForm(name="getUserShiftsForm")
+            input(name="id", placeholder="Shift ID", required) 
+            br
+            input(type="submit") 
+            br
+        legend.responseLegend
+          div Response: 
+          div.responseDiv#getShiftResponse

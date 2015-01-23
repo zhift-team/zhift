@@ -1,0 +1,18 @@
+//- Page Header (for managers and employees)
+//- @author Lily Seropian, Anji Ren
+
+extends layout
+
+block head
+  include manager/manager.jade
+  include employee/employee.jade
+  include navbar.jade
+
+block navbar
+  +logged-in-navbar(user.schedule === undefined)
+
+block content
+  if user.schedule
+    +employee(user)
+  else
+    +manager(user)

@@ -1,0 +1,17 @@
+//- Dashboard page view
+//- @author Lily Seropian, Vicky Gong
+
+extends ../layout
+
+block head
+  link(rel="stylesheet", href="stylesheets/dashboard/dash.css")
+  include dashboard.jade
+  include ../navbar
+
+block navbar
+  +logged-in-navbar(user.schedule === undefined)
+
+block content
+  h1.title Dashboard
+  div.dashboard-container
+    +dashboard()

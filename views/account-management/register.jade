@@ -1,0 +1,36 @@
+//- Registration Page
+//- @author Anji Ren, Lily Seropian
+
+extends ../layout
+
+block content
+  - if(message)
+    div.message-container #{message}
+  h2.main-heading Register your organization.
+  div.info-container Add details as a manager for your new organization.
+  div.form-container
+    form.form-horizontal(action="/signup", method="POST")
+      fieldset
+        div.form-group
+          label.col-lg-2.control-label Name
+          div.col-lg-10
+            input(type="hidden", name="invite", value="false")
+            input.form-control(type="text", name="name", placeholder='"Jane Doe"', required, autofocus)
+        div.form-group
+          label.col-lg-2.control-label Email
+          div.col-lg-10
+            input.form-control(type="email", name="email", placeholder='"jane@applebees.com"', required, autofocus)
+        div.form-group
+          label.col-lg-2.control-label Organization
+          div.col-lg-10
+            input.form-control(type="text", name="org" placeholder='"Applebee\'s"', required, autofocus)
+        div.form-group
+          label.col-lg-2.control-label Password
+          div.col-lg-10
+            input.form-control(type="password", name="password", required)
+        div.form-group
+          div.col-lg-10.col-lg-offset-2
+            input.btn.btn-primary.yellow-button(type="submit", value="REGISTER")
+            br
+            br
+            a(href="/") Already have an account?

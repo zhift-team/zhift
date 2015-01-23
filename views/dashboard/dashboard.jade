@@ -1,0 +1,22 @@
+//- Dashboard mixin
+//- @author Vicky Gong
+
+block head
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    link(rel="stylesheet", href="stylesheets/dashboard/dashboard.css")
+    link(rel="stylesheet", href="stylesheets/main.css")
+    script(type="text/javascript", src="/javascripts/controllers/dashboard-controller.js")
+    script(type="text/javascript", src="/javascripts/services/record-service.js")
+    script(type="text/javascript", src="/javascripts/services/schedule-service.js")
+    include ../navbar
+
+mixin dashboard()
+    div.dashboard(ng-controller="RecordController", ng-init="init('#{user.org}', '#{user.schedule}')")
+        div.schedule(ng-repeat="record in records") 
+            div.role {{record.role}}
+            div.content
+                div.record(ng-repeat="r in record.records") 
+                    {{r.content}} 
+                    //- p(ng-bind="getDisplayDate(r.dateAbout)")
+                div.empty-record(ng-if="record.records.length === 0")
+                    p None

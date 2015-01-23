@@ -1,0 +1,131 @@
+.title {
+    text-align: center;
+    font-family: 'Bitter';
+}
+
+#shift-schedule{
+    text-align: center;
+    border: none;
+    margin: 30px auto;
+    max-height: 500px;
+    min-width: 460px;
+    overflow: scroll;
+    max-width: 1062px;
+}
+
+#shift-schedule .heading {
+    font-family: 'Bitter';
+    font-weight: 700;
+}
+
+#shift-schedule .time-label {
+    color: #ffb500;
+    text-align: right;
+    height: 80px;
+    margin-bottom: 1px;
+}
+
+
+.schedule-tabs-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#shift-schedule .cal-col-title {
+    min-height: 20px;
+    text-transform: uppercase;
+    position: fixed;
+    margin-top: -27px;
+}
+
+#shift-schedule .cal-time-column {
+    vertical-align: top;
+    display: inline-block;
+    padding: 10px 10px 10px 0;
+    max-width:150px;
+    min-width: 45px;
+    margin: 0 1px;
+}
+
+#shift-schedule .cal-column{
+    vertical-align: top;
+    display: inline-block;
+    padding: 10px;
+    max-width:150px;
+    min-width: 130px;
+    margin: 0 1px;
+}
+
+#shift-schedule .event-box {
+    min-width: 100px;
+    max-width: 115px;
+    height: 80px;
+    margin-bottom: 1px;
+    border-top: 3px solid black;
+    overflow: scroll;
+}
+
+.shift {
+    padding: 3px 0 5px 0;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    margin-bottom: 2px;
+    background-color: #B25959;
+    color: rgb(245, 233, 233);
+}
+
+.shift p {
+    margin: 0;
+}
+
+.shift:hover {
+    background: rgba(255, 196, 15, 0.19);
+    color: black;
+}
+
+.clickable-shift:hover {
+    cursor: pointer;
+}
+
+.shift .btn {
+    margin-bottom: 4px;
+    padding: 4px 8px;
+}
+.add-shift {
+    width: 100%;
+    background: #383838;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    color: white;
+    font-size: 0.8em;
+}
+
+.add-shift:hover {
+    background: #ffcd88;
+}
+
+#role-name-label {
+    margin-right: 1em;
+}
+
+#week-picker {
+    text-align: center;
+    font-family: 'Bitter';
+    font-weight: 500;
+    font-size: 16pt;
+    margin-bottom: 10px;
+}
+
+#week-picker .dropdown{
+    display: inline-block;
+}
+
+#week-picker-form {
+    padding-bottom: 5px;
+}
+
+.employee-role-name {
+    text-align: center;
+    font-family: 'Bitter';
+    font-weight: 500;
+    font-size: 20pt;
+    padding-bottom: 5pt;
+}

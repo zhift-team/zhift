@@ -1,0 +1,14 @@
+.DS_Store
+
+npm-debug.log
+
+logs/
+
+# NODE DEPENDENCIES
+node_modules/
+
+# OPENSHIFT
+.openshift/
+index.html
+server.js
+deplist.txt

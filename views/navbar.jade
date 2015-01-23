@@ -1,0 +1,25 @@
+//- Navigation bar icons for a logged in user.
+//- @author Lily Seropian
+
+mixin logged-in-navbar(isManager)
+  span.navbar-right
+    if isManager
+      a.navbar-brand(href="/shift")
+        span.glyphicon.glyphicon-calendar(title="Upcoming Shifts")
+    a.navbar-brand(href="/dashboard")
+      span.glyicon.fa.fa-flag(title="Notifications")
+    a.navbar-brand.dropdown
+      a.navbar-brand.dropdown-toggle(id="userMenu" data-toggle="dropdown" aria-expanded="true")
+        span.glyphicon.glyphicon-cog(title="Settings")
+        span.caret
+      ul.dropdown-menu.dropdown-menu-right(role="menu" aria-labelledby="userMenu")
+        if isManager
+          li(role="presentation")
+            a(role="menuitem" href="/edit")
+              span(title="Settings") Edit Organization Details
+        li(role="presentation")
+          a(role="menuitem" href="/settings")
+            span(title="Settings") My Settings
+        li(role="presentation")
+          a(role="menuitem" href="/signout") Sign Out
+            span(title="Sign Out")

@@ -1,0 +1,47 @@
+//- General layout for main pages of app
+//- @author Anji Ren, Vicky Gong, Lily Seropian
+
+doctype
+html
+  head
+  title= title
+  // Google fonts
+  link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Bitter:400,700|Oxygen:400,300')
+  link(href='http://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css')
+  // jQuery
+  script(type="text/javascript", src="http://code.jquery.com/jquery-1.10.1.min.js")
+  script(type="text/javascript", src="http://code.jquery.com/jquery-migrate-1.2.1.min.js")
+
+  // Bootstrap
+  link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+  script(type="text/javascript", src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+
+  // FontAwesome
+  link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
+  // Angular
+  script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js")
+  script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js")
+  script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js")
+  script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.min.js") 
+
+  // Main js
+  script(type="text/javascript", src="javascripts/main.js")
+
+  // Main css
+  link(rel="stylesheet", href="/stylesheets/main.css")
+
+  block head
+  
+  body(data-ng-app="ZhiftApp")
+    // Navigation
+    div#nav
+      div.navbar.navbar-inverse.navbar-static-top
+        div.container
+          a.navbar-brand(href="/home") ZHIFT
+          if user
+            span.navbar-brand#orgname #{user.org} |
+            span.navbar-brand#username #{user.name}
+          block navbar
+    div.message-container
+
+  block content

@@ -1,0 +1,107 @@
+//- Template shift display
+//-     Show all template shifts for each schedule 
+//-     Can create, edit, remove template shifts and assign to employees
+//- author: @Anji Ren, Vicky Gong
+
+
+block head
+    link(rel="stylesheet", href="stylesheets/shift-calendar/shift-calendar.css")
+    script(type="text/javascript", src="/javascripts/controllers/manager-schedule-controller.js")
+    script(type="text/javascript", src="/javascripts/services/schedule-service.js")
+    script(type="text/javascript", src="/javascripts/services/template-shift-service.js")
+    script(type="text/javascript", src="/javascripts/services/user-service.js")
+    
+
+mixin template-shift-calendar(org)
+    h3.title Permanent Shifts
+    div(id="shift-calendar" ng-controller="ManagerScheduleController" ng-init="init('#{org}')")
+        div.schedule-tabs-container
+            div.btn-group(id="schedule-tabs")
+                button.btn.btn-default.switch.load-schedule(type="button" 
+                    data-ng-repeat="schedule in schedules" 
+                    id="{{schedule._id}}"  
+                    class="set-current-schedule") {{schedule.role}}
+                button.btn.btn-default.switch.load-schedule(type="button"
+                    data-toggle="modal"
+                    data-target="#newScheduleModal") +
+        div(id="shift-schedule")
+            div.cal-time-column
+                div.cal-col-title 
+                div.events
+                    div.heading.time-label(
+                        data-ng-repeat="hour in ['7AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM','1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM','7 PM', '8 PM', '9 PM', '10 PM', '11 PM', '12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM']") {{hour}}
+            div.cal-column(data-ng-repeat="day in ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']")
+                div.cal-col-title.heading {{day}}
+                div.events
+                    div.event-box.open-event-slot(
+                        data-ng-repeat="hour in [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,1,2,3,4,5,6]")
+                            div.add-shift(
+                                data-toggle="modal"
+                                data-target="#addShiftModal"
+                                data-shift-id=""
+                                data-day-week="{{day}}"
+                                data-start-time="{{hour}}" 
+                                data-end-time="{{hour+1}}"
+                                class="set-active-shift-info")
+                                i.fa.fa-plus.add-shift-button
+                            div.shift.clickable-shift(data-ng-repeat="shift in templateShiftsByDay[day][hour]"
+                                data-toggle="modal" 
+                                data-target="#reassignShiftModal"
+                                data-shift-id="{{shift._id}}"
+                                data-day-week="{{day}}"
+                                data-start-time="{{hour}}" 
+                                data-end-time="{{hour+1}}"
+                                class="set-active-shift-info")
+                                p.clickable-shift {{shift.responsiblePerson.name}}
+        div.modal.fade#addShiftModal
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        button(type="button" class="close" data-dismiss="modal")
+                            span(aria-hidden="true") &times;
+                            span.sr-only Close 
+                        h4.modal-title Add new shift for:
+                    div.modal-body
+                        form.form-horizontal
+                            div.form-group
+                                div.col-lg-10
+                                    select.form-control(name="addShiftEmployee")
+                                        option(data-ng-repeat="employee in employeesOfCurrentSchedule" id="{{employee._id}}" val="{{employee._id}}") {{employee.name}}
+                    div.modal-footer
+                        button.btn.btn-default(type="button" class="create-template-shift" data-dismiss="modal") Add
+                        button.btn.btn-default(type="button" data-dismiss="modal") Close
+        div.modal.fade#reassignShiftModal
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        button(type="button" class="close" data-dismiss="modal")
+                            span(aria-hidden="true") &times;
+                            span.sr-only Close 
+                        h4.modal-title Reassign or delete this permanent shift
+                    div.modal-body
+                        form.form-horizontal
+                            div.form-group
+                                div.col-lg-10 Reassign to
+                                    select.form-control(name="reassignShiftEmployee")
+                                        option(data-ng-repeat="employee in employeesOfCurrentSchedule" id="{{employee._id}}") {{employee.name}}
+                    div.modal-footer
+                        button.btn.btn-default(type="button" class="reassign-template-shift" data-dismiss="modal") Assign
+                        button.btn.btn-default(type="button" class="delete-template-shift" data-dismiss="modal") Delete
+                        button.btn.btn-default(type="button" data-dismiss="modal") Cancel                 
+        div.modal.fade#newScheduleModal
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        button(type="button" class="close" data-dismiss="modal")
+                            span(aria-hidden="true") &times;
+                            span.sr-only Close
+                        h4.modal-title Create New Schedule:
+                    div.modal-body
+                        form.form-horizontal
+                            div.form-group
+                                div.col-lg-10
+                                    label(for="role-name", id="role-name-label") Role Name:
+                                    input(type="text", placeholder="Cashier", id="role-name")
+                    div.modal-footer
+                        button.btn.btn-default(type="button" class="create-new-role" data-dismiss="modal") Create
+                        button.btn.btn-default(type="button" data-dismiss="modal") Cancel

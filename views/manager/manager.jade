@@ -1,0 +1,14 @@
+//- Manager Home Page
+//- @author Lily Seropian, Vicky Gong
+
+block head    
+  include ../calendar/template-shift-calendar.jade
+
+  script(type="text/javascript", src="/javascripts/controllers/manager-controller.js")
+  script(type="text/javascript", src="/javascripts/services/schedule-service.js")
+
+mixin manager(user)
+  div(ng-controller="ManagerController" ng-init="init('#{user.org}')")
+    +template-shift-calendar(user.org)
+    br
+    br

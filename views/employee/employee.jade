@@ -1,0 +1,10 @@
+//- Employee Home Page
+//- @author Vicky Gong
+
+block head    
+  include ../calendar/shift-calendar.jade
+
+mixin employee(user)
+    +shift-calendar(user.org, user.schedule)
+    br
+    br

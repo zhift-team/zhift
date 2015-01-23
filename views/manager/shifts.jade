@@ -1,0 +1,15 @@
+//- Manager Shifts View Page
+//- @author Vicky Gong
+extends ../layout
+
+block head    
+  include ../calendar/shift-calendar.jade
+  include ../navbar.jade
+
+block navbar
+  +logged-in-navbar(user.schedule === undefined)
+
+block content
+    +shift-calendar(user.org)
+    br
+    br
